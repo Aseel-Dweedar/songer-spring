@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>All Albums</h1>
+
+<form form action="/album" method="post">
+    <input type="test" name="title" id="title" >
+    <input type="test" name="artist" id="artist" >
+    <input type="test" name="imageUrl" id="imageUrl" >
+    <input type="number" name="songCount" id="songCount" >
+    <input type="number" name="length" id="length" >
+    <button type="submit" >Submit</button>
+</form>
+
+<div class="albumsHolder">
+    <div th:each="album : ${albums}" class="albumDiv">
+        <!--            <a th:href="@{http://localhost:8080/oneAlbum(id=${album.id})}">-->
+        <div>
+            <p>Album title :<span th:text="${album.title}"></span></p>
+            <p>Artist Name :<span th:text="${album.artist}"></span></p>
+            <p>Number of songs :<span th:text="${album.songCount}"></span></p>
+            <p>Total length :<span th:text="${album.length}"></span></p>
+            <img th:src="${album.imageUrl}"/>
+        </div>
+        <!--            </a>-->
+    </div>
+</div>
+
+</body>
+</html>
