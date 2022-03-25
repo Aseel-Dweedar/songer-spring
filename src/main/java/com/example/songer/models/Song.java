@@ -19,5 +19,19 @@ public class Song {
     @Column(name = "id" , nullable = false)
     private long id;
 
+    private String title;
+    private int length;
 
+    @ManyToOne
+    Albums album;
+
+    @Override
+    public String toString() {
+        return "Song{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", length=" + length +
+                ", album=" + album +
+                '}';
+    }
 }

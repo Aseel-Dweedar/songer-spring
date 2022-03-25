@@ -18,13 +18,15 @@ public class AlbumsServices {
     }
 
     public List<Albums> getAllAlbums() {
-        List<Albums> albums = albumsRepo.findAll();
-        return albums;
+        return albumsRepo.findAll();
     }
 
-    public Albums addAlbum(Albums album) {
+    public void addAlbum(Albums album) {
         albumsRepo.save(album);
-        return album;
+    }
+
+    public Albums findOneAlbum(Long id) {
+        return albumsRepo.findById(id).get();
     }
 
 }
