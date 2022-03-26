@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Set;
 
@@ -26,9 +28,16 @@ public class AlbumsController {
     }
 
     @GetMapping("/")
-    String getAllAlbums(Model model) {
-        List<Albums> albums = albumsServices.getAllAlbums();
-        model.addAttribute("albums", albums);
+    String getAllAlbums(Model model , HttpServletRequest request) {
+
+        HttpSession session = request.getSession();
+
+        if (session.getAttribute("username") != null) {
+            List<Albums> albums = albumsServices.getAllAlbums();
+            model.addAttribute("albums", albums);
+            model.addAttribute("user", true);
+        }
+
         return "index";
     }
 
@@ -44,7 +53,7 @@ public class AlbumsController {
         Albums album = albumsServices.findOneAlbum(id);
         model.addAttribute("album", album);
         Set<Song> songs = songsService.findSongsByAlbumId(id);
-        model.addAttribute("songs" , songs);
+        model.addAttribute("songs", songs);
         return "oneAlbum";
     }
 

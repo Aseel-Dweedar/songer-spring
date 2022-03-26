@@ -13,7 +13,17 @@
 
 <h1>All Albums</h1>
 
-<form form action="/album" method="post">
+<form form action="/login" method="get">
+    <button type="submit">LOG IN</button>
+</form>
+
+<form form action="/logout" method="post">
+    <button type="submit">LOG OUT</button>
+</form>
+
+<hr>
+
+<form th:if="${user}" action="/album" method="post">
     <input type="test" name="title" id="title">
     <input type="test" name="artist" id="artist">
     <input type="test" name="imageUrl" id="imageUrl">
